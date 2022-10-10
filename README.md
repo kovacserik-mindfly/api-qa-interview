@@ -119,9 +119,9 @@ You need to implement a test automation for the weather API (see above) using Cu
 To also make use of selenium, test a few fields from `https://openweathermap.org/`
 
 #### Task1
-Verify the main page's title field text
+Verify the main page's search field contains correct placeholder text
 
-![Title](./resources/openweather_title.png)
+![Title](./resources/openweather_search.png)
 
 #### Task2
 * Search for `Sydney`, and select `Sydney, AU` from the list
@@ -130,7 +130,7 @@ Verify the main page's title field text
 * Verify the time
 
 
-![Title](./resources/openweather_search.png)
+![Title](./resources/openweather_search_city.png)
 
 
 ## Next Step
