@@ -1,6 +1,7 @@
 package com.viesure.automation.stepdefs;
 
 import api.APIHelper;
+import api.util.FileUtil;
 import api.util.NumberUtil;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -13,6 +14,10 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.everit.json.schema.Schema;
+import org.everit.json.schema.loader.SchemaLoader;
+import org.json.JSONObject;
+import org.json.JSONTokener;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -245,5 +250,18 @@ public class StepDefinitions {
             driver.close();
         }
         response = null;
+    }
+
+    @Then("The response should match to the schema")
+    public void theResponseShouldMatchToTheSchema() {
+
+        // load the schema from the file
+        JSONObject jsonObject = new JSONObject(new JSONTokener(FileUtil.getSchemaStream()));
+        Schema schema = SchemaLoader.load(jsonObject);
+
+        JSONObject jsonFromResponse = new JSONObject(response.asString());
+
+        // Do the validation using the built-in validate function
+        schema.validate(jsonFromResponse);
     }
 }
