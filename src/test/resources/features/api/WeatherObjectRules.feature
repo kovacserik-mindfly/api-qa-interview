@@ -9,6 +9,7 @@ Feature: Weather Object Rules
   Scenario Outline: Checking the tempInFahrenheit in weather object
     When I get the current weather data
     Then The <field> field contains the current temperature in Fahrenheits
+    And The <field> should have 0 digits
     Examples:
       | field              |
       | "tempInFahrenheit" |
@@ -18,6 +19,7 @@ Feature: Weather Object Rules
     When I get the current weather data
     Then The <field> field contains the current temperature in Celsius
     And The tempInCelsius Calculated from the tempInFahrenheit field
+    And The <field> should have 0 digits
     Examples:
       | field           |
       | "tempInCelsius" |

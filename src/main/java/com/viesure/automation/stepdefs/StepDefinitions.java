@@ -244,6 +244,17 @@ public class StepDefinitions {
 
     }
 
+
+    @And("The {string} should have 0 digits")
+    public void theFieldShouldHaveDigits(String field) {
+        String currentData = response.jsonPath().getString("weather." + field);
+
+        logger.info("currentData: {}", currentData);
+
+        Assert.assertFalse(currentData.contains("."),"Data should not contain '.'");
+        Assert.assertFalse(currentData.contains(","), "Data should not contain ','");
+    }
+
     @After
     public void tearDown() {
         if (driver != null) {
